@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:food_scanner/model.searchResult.dart';
+import 'package:food_scanner/foodDetails.dart';
 
 class SearchResults extends StatelessWidget {
   final Future<SearchResult> _futureSearchResult;
@@ -14,7 +15,8 @@ class SearchResults extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CupertinoActivityIndicator());
           } else if (snapshot.hasData) {
-            return Text(SearchResult.formatSearchResult(snapshot.data));
+            // TODO extend to show multiple results
+            return FoodDetails(snapshot.data.foods[0]);
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           } else {

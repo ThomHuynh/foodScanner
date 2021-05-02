@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
                 Container(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'FOOD SCANNER 🥕🔍',
+                      'FOOD SCANNER 🥕👀',
                     )),
                 Container(padding: EdgeInsets.all(16.0), child: FoodSearch()),
               ]),

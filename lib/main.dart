@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Food Scanner',
       home: Scaffold(
-        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        body: ListView(children: [
           Container(
               padding: EdgeInsets.all(16.0), child: Text('FOOD SCANNER 🥕🔍')),
           Container(padding: EdgeInsets.all(16.0), child: FoodSearch()),

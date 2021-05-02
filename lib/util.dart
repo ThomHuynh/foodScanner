@@ -1,4 +1,4 @@
-import 'package:food_scanner/model/searchResult.dart';
+import 'package:food_scanner/model.searchResult.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

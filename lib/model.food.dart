@@ -1,4 +1,29 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
+class Food {
+  final int id;
+  final String description;
+  List<FoodNutrient> foodNutrients;
+
+  Food(
+      {@required this.id,
+      @required this.description,
+      @required this.foodNutrients});
+
+  factory Food.fromJson(Map<String, dynamic> json) {
+    List list = json['foodNutrients'];
+    List<FoodNutrient> foodNutrientList = [];
+    for (var i in list) {
+      FoodNutrient foodNutrient = FoodNutrient.fromJson(i);
+      foodNutrientList.add(foodNutrient);
+    }
+    return Food(
+      id: json['fdcId'],
+      description: json['description'],
+      foodNutrients: foodNutrientList,
+    );
+  }
+}
 
 class FoodNutrient {
   final int nutrientId;

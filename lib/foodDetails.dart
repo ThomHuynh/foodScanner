@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_scanner/model.food.dart';
 
@@ -13,14 +12,8 @@ class FoodDetails extends StatelessWidget {
     food.foodNutrients.forEach((nutrient) {
       list.add(DataRow(
         cells: <DataCell>[
-          DataCell(Text(
-            nutrient.nutrientName,
-            style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            '${nutrient.value} ${nutrient.unitName}',
-            style: TextStyle(color: Colors.white),
-          )),
+          DataCell(Text(nutrient.nutrientName)),
+          DataCell(Text('${nutrient.value} ${nutrient.unitName}')),
         ],
       ));
     });
@@ -30,23 +23,28 @@ class FoodDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Text(food.description),
-      DataTable(
-        columns: const <DataColumn>[
-          DataColumn(
-              label: Text(
-            'Name',
-            style: TextStyle(color: Colors.white),
-          )),
-          DataColumn(
-              label: Text(
-            'Amount',
-            style: TextStyle(color: Colors.white),
-          )),
-        ],
-        rows: mapToDataRow(food.foodNutrients),
-      )
-    ]);
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            food.description,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        DataTable(
+          columnSpacing: 25,
+          dataRowHeight: 25,
+          headingRowHeight: 35,
+          horizontalMargin: 0,
+          columns: const <DataColumn>[
+            DataColumn(label: Text('Name')),
+            DataColumn(label: Text('Amount')),
+          ],
+          rows: mapToDataRow(food.foodNutrients),
+        ),
+      ],
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+    );
   }
 }

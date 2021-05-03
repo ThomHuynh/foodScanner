@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Food {
   final int id;
@@ -15,7 +15,9 @@ class Food {
     List<FoodNutrient> foodNutrientList = [];
     for (var i in list) {
       FoodNutrient foodNutrient = FoodNutrient.fromJson(i);
-      foodNutrientList.add(foodNutrient);
+      if (foodNutrient.value > 0) {
+        foodNutrientList.add(foodNutrient);
+      }
     }
     return Food(
       id: json['fdcId'],

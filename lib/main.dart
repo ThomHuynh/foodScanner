@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:food_scanner/model.searchResult.dart';
 import 'package:food_scanner/searchResults.dart';
 import 'package:food_scanner/util.dart';
@@ -8,23 +8,24 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-        title: 'Food Scanner',
-        home: Builder(builder: (BuildContext context) {
-          return DefaultTextStyle(
-            style: CupertinoTheme.of(context).textTheme.textStyle,
-            child: CupertinoPageScaffold(
-              child: ListView(children: [
-                Container(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'FOOD SCANNER 🥕👀',
-                    )),
-                Container(padding: EdgeInsets.all(16.0), child: FoodSearch()),
-              ]),
-            ),
-          );
-        }));
+    return MaterialApp(
+      title: 'Food Scanner',
+      home: Scaffold(
+        body: ListView(children: [
+          Container(
+              child: Text('FOOD SCANNER',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ))),
+          Container(
+            padding: EdgeInsets.all(12),
+            child: FoodSearch(),
+          ),
+        ]),
+      ),
+    );
   }
 }
 
@@ -46,16 +47,23 @@ class _FoodSearchState extends State<FoodSearch> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      CupertinoSearchTextField(
-          controller: foodSearchController,
-          placeholder: 'Enter food name...',
-          onSubmitted: (String value) async {
-            setState(() {
-              _futureSearchResult = getData(value);
-            });
-          }),
-      SearchResults(_futureSearchResult),
-    ]);
+    return Column(
+      children: [
+        TextField(
+            controller: foodSearchController,
+            decoration: InputDecoration(
+              hintText: 'Enter food name...',
+            ),
+            onSubmitted: (String value) async {
+              setState(() {
+                _futureSearchResult = getData(value);
+              });
+            }),
+        Container(
+          child: SearchResults(_futureSearchResult),
+          padding: EdgeInsets.only(top: 24),
+        )
+      ],
+    );
   }
 }

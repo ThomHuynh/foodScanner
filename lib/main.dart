@@ -12,13 +12,17 @@ class MyApp extends StatelessWidget {
       title: 'Food Scanner',
       home: Scaffold(
         body: ListView(children: [
+          // TODO fix scrollable
           Container(
-              child: Text('FOOD SCANNER',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ))),
+            child: Text(
+              'FOOD SCANNER',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           Container(
             padding: EdgeInsets.all(12),
             child: FoodSearch(),

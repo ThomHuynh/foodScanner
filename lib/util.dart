@@ -9,7 +9,7 @@ Future<SearchResult> getData(String value) async {
     'limit': '2',
     'dataType': ['Foundation', 'SR Legacy'],
     'query': '$value',
-    'pageSize': '1'
+    'pageSize': '10'
   });
 
   final http.Response response = await http.get(url);

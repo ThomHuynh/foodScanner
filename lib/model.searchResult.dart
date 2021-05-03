@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:food_scanner/model.food.dart';
 
 class SearchResult {
-// class SearchResult extends StatelessWidget {
-  // TODO turn result into own widget
   final int totalHits;
   final List<Food> foods;
-  // final Future<SearchResult> futureSearchResult;
 
   const SearchResult({
     @required this.totalHits,
     @required this.foods,
-    // @required this.futureSearchResult,
   });
 
   factory SearchResult.fromJson(Map<String, dynamic> json) {
@@ -27,8 +23,6 @@ class SearchResult {
   }
 
   static String formatSearchResult(SearchResult searchResult) {
-    // TODO visualize response
-
     String formattedResult = '';
     searchResult.foods[0].foodNutrients.forEach((nutrient) {
       formattedResult +=

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_scanner/foodDetails.dart';
 import 'package:food_scanner/model.food.dart';
 
 class FoodList extends StatelessWidget {
@@ -6,15 +7,26 @@ class FoodList extends StatelessWidget {
 
   FoodList(this.foods);
 
-  List<Widget> mapFoods(List<Food> foods) {
+  List<Widget> mapFoods(BuildContext context, List<Food> foods) {
     List<Widget> list = [];
 
     foods.forEach((Food food) {
-      list.add(Card(
-        child: ListTile(
-          title: Text(food.description),
+      list.add(
+        InkWell(
+          child: Card(
+            child: ListTile(
+              title: Text(food.description),
+            ),
+          ),
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => FoodDetailScreen(food)));
+          },
+          splashColor: Colors.blue.withAlpha(30),
         ),
-      ));
+      );
     });
 
     return list;
@@ -22,10 +34,9 @@ class FoodList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO make cards clickable -> go to product details
     return ListView(
       shrinkWrap: true,
-      children: mapFoods(foods),
+      children: mapFoods(context, foods),
     );
   }
 }

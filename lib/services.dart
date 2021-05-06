@@ -1,4 +1,4 @@
-import 'package:food_scanner/model.searchResult.dart';
+import 'package:food_scanner/model/searchResult.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -9,7 +9,7 @@ Future<SearchResult> getData(String value) async {
     'limit': '2',
     'dataType': ['Foundation', 'SR Legacy'],
     'query': '$value',
-    'pageSize': '10'
+    'pageSize': '15'
   });
 
   final http.Response response = await http.get(url);

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_scanner/model.food.dart';
+import 'package:food_scanner/model/food.dart';
 
+// TODO find system for this model, name, etc. Maybe put this into food.dart
 class SearchResult {
-  final int totalHits;
   final List<Food> foods;
 
   const SearchResult({
-    @required this.totalHits,
     @required this.foods,
   });
 
@@ -17,7 +16,7 @@ class SearchResult {
       foodList.add(food);
     }
     return SearchResult(
-      totalHits: json['totalHits'],
+      // totalHits: json['totalHits'],
       foods: foodList,
     );
   }

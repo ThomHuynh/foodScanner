@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_scanner/model.food.dart';
+import 'package:food_scanner/model/food.dart';
 
 class FoodDetailScreen extends StatelessWidget {
   final Food food;

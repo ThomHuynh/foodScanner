@@ -10,6 +10,15 @@ class FoodList extends StatelessWidget {
   FoodList(this._futureSearchResult);
 
   List<Widget> mapFoods(BuildContext context, List<Food> foods) {
+    // higher prio for foundational foods
+    foods.forEach((Food f) {
+      if (f.dataType == 'Foundation') {
+        f.score += 500;
+      }
+    });
+
+    foods.sort((a, b) => b.score.compareTo(a.score));
+
     List<Widget> list = [];
 
     foods.forEach((Food food) {
@@ -18,6 +27,7 @@ class FoodList extends StatelessWidget {
           child: Card(
             child: ListTile(
               title: Text(food.description),
+              subtitle: Text('Score: ${food.score} Category: ${food.dataType}'),
             ),
           ),
           onTap: () {

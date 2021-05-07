@@ -13,7 +13,7 @@ class FoodDetailScreen extends StatelessWidget {
       list.add(DataRow(
         cells: <DataCell>[
           DataCell(Text(nutrient.name)),
-          DataCell(Text('${nutrient.amount} ${nutrient.unitName}')),
+          DataCell(Text('${nutrient.value} ${nutrient.unitName}')),
         ],
       ));
     });

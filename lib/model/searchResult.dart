@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_scanner/model/food.dart';
 
-// TODO refine data model make more use of response data
 class SearchResult {
   final List<Food> foods;
   final int totalHits;
@@ -33,7 +32,7 @@ class SearchResult {
     String formattedResult = '';
     searchResult.foods[0].foodNutrients.forEach((nutrient) {
       formattedResult +=
-          '\t${nutrient.name}: ${nutrient.amount}${nutrient.unitName} ';
+          '\t${nutrient.name}: ${nutrient.value}${nutrient.unitName} ';
     });
 
     return formattedResult;

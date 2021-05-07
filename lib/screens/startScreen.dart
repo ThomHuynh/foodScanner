@@ -11,7 +11,6 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        // TODO start screen should navigate to different screen using a top search bar
         child: ListView(
           children: [
             Container(

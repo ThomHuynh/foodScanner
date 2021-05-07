@@ -22,6 +22,7 @@ class _FoodSearchState extends State<FoodSearch> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
         TextField(
@@ -31,7 +32,7 @@ class _FoodSearchState extends State<FoodSearch> {
             ),
             onSubmitted: (String value) async {
               setState(() {
-                _futureSearchResult = getData(value);
+                _futureSearchResult = getSearchResults(value);
               });
             }),
         Container(

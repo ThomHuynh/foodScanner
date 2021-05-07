@@ -12,8 +12,8 @@ class FoodDetailScreen extends StatelessWidget {
     food.foodNutrients.forEach((nutrient) {
       list.add(DataRow(
         cells: <DataCell>[
-          DataCell(Text(nutrient.nutrientName)),
-          DataCell(Text('${nutrient.value} ${nutrient.unitName}')),
+          DataCell(Text(nutrient.name)),
+          DataCell(Text('${nutrient.amount} ${nutrient.unitName}')),
         ],
       ));
     });

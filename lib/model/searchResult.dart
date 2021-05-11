@@ -20,6 +20,7 @@ class SearchResult {
       Food food = Food.fromJson(i);
       foodList.add(food);
     }
+
     return SearchResult(
       foods: foodList,
       totalHits: json['totalHits'],

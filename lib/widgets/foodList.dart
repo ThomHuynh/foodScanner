@@ -27,10 +27,12 @@ class FoodList extends StatelessWidget {
           child: Card(
             child: ListTile(
               title: Text(food.description),
-              subtitle: Text('Score: ${food.score} Category: ${food.dataType}'),
+              subtitle: Text(food.category ?? ''),
             ),
           ),
           onTap: () {
+            // TODO food detail request for food.id
+
             Navigator.push(
                 context,
                 MaterialPageRoute(

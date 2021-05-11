@@ -42,7 +42,11 @@ class Food {
   // Relative score indicating how well the food matches the search criteria
   double score; // not final, bc score is raised for foundational foods
 
+  // example: Vegetable and Vegetable Products
+  final String category;
+
   Food({
+    // Abridged
     @required this.id,
     @required this.dataType,
     @required this.description,
@@ -57,6 +61,7 @@ class Food {
     this.additionalDescription,
     @required this.allHighlightFields,
     @required this.score,
+    @required this.category,
   });
 
   factory Food.fromJson(Map<String, dynamic> json) {
@@ -70,21 +75,21 @@ class Food {
     }
 
     return Food(
-      id: json['fdcId'],
-      dataType: json['dataType'],
-      description: json['description'],
-      foodCode: json['foodCode'],
-      foodNutrients: foodNutrientList,
-      publicationDate: json['publicationDate'],
-      scientificName: json['scientificName'],
-      brandOwner: json['brandOwner'],
-      gtinUpc: json['gtinUpc'],
-      ingredients: json['ingredients'],
-      ndbNumber: json['ndbNumber'],
-      additionalDescription: json['additionalDescription'],
-      allHighlightFields: json['allHighlightFields'],
-      score: json['score'],
-    );
+        id: json['fdcId'],
+        dataType: json['dataType'],
+        description: json['description'],
+        foodCode: json['foodCode'],
+        foodNutrients: foodNutrientList,
+        publicationDate: json['publicationDate'],
+        scientificName: json['scientificName'],
+        brandOwner: json['brandOwner'],
+        gtinUpc: json['gtinUpc'],
+        ingredients: json['ingredients'],
+        ndbNumber: json['ndbNumber'],
+        additionalDescription: json['additionalDescription'],
+        allHighlightFields: json['allHighlightFields'],
+        score: json['score'],
+        category: json['foodCategory']);
   }
 }
 

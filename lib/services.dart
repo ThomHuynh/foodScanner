@@ -25,7 +25,7 @@ Future<SearchResult> getSearchResults(String value) async {
 
 // TODO write api request for food detail
 getFoodDetails(int id) async {
-  Uri url = Uri.https('api.nal.usda.gov', '/fdc/v1/food/${id}', {
+  Uri url = Uri.https('api.nal.usda.gov', '/fdc/v1/food/$id', {
     'api_key': 'xdB5Kz8rvwFnQz6U6TWo1abZbnds3cZA8VIlHpOs',
   });
 

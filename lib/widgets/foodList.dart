@@ -27,7 +27,7 @@ class FoodList extends StatelessWidget {
           child: Card(
             child: ListTile(
               title: Text(food.description),
-              subtitle: Text(food.category ?? ''),
+              subtitle: Text('ID:${food.id}     ${food.category ?? ''}'),
             ),
           ),
           onTap: () {

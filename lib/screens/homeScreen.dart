@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:food_scanner/widgets/foodSearch.dart';
 
-class StartScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _StartScreenState createState() => _StartScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _StartScreenState extends State<StartScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

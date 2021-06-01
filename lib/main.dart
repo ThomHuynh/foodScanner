@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_scanner/config/palette.dart';
+import 'package:food_scanner/config/config.dart';
 import 'package:food_scanner/screens/screens.dart';
 
 void main() => runApp(MyApp());
@@ -9,9 +10,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Food Scanner',
+      debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(
+        cupertinoOverrideTheme:
+            CupertinoThemeData(primaryColor: Palette.primary),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Palette.primary,
+          selectionColor: Palette.primary.withOpacity(0.5),
+          selectionHandleColor: Palette.primary,
+          // selectionHandleColor: Palette.primary,
+        ),
         brightness: Brightness.dark,
         primaryColor: Palette.primary,
+        primaryColorDark: Palette.primary,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       themeMode: ThemeMode.dark,

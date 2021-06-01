@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_scanner/config/config.dart';
 
 import 'package:food_scanner/screens/foodDetailsScreen.dart';
 import 'package:food_scanner/model/food.dart';
@@ -31,14 +32,11 @@ class FoodList extends StatelessWidget {
             ),
           ),
           onTap: () {
-            // TODO food detail request for food.id
-
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => FoodDetailScreen(food)));
           },
-          splashColor: Colors.blue.withAlpha(30),
         ),
       );
     });
@@ -52,7 +50,8 @@ class FoodList extends StatelessWidget {
         future: _futureSearchResult,
         builder: (BuildContext context, AsyncSnapshot<SearchResult> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator(color: Palette.primary));
           } else if (snapshot.hasData) {
             return Column(
               children: mapFoods(context, snapshot.data.foods),

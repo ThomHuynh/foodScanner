@@ -23,9 +23,6 @@ class FoodDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO fetch details for one food item by FDC ID
-    // TODO display main things with nice visualization
-
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(12),

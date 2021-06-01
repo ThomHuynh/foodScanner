@@ -12,18 +12,39 @@ class BottomNavScreen extends StatefulWidget {
 class _BottomNavScreenState extends State<BottomNavScreen> {
   final List _screens = [
     HomeScreen(),
+    Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlutterLogo(
+              size: 100,
+            ),
+            Text('Under Construction'),
+          ],
+        ),
+      ),
+    )
   ];
   int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Palette.background,
+        title: Text(
+          'Food Scanner',
+          style: TextStyle(color: Palette.onSurface, fontSize: 24),
+        ),
+      ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Palette.bars,
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
         selectedItemColor: Palette.primary,
-        unselectedItemColor: Palette.onSurface,
+        unselectedItemColor: Palette.onSurfaceMedium,
         items: [
           [CupertinoIcons.home, 'Home'],
           [CupertinoIcons.bookmark, 'Bookmarks']

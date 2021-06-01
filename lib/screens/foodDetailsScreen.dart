@@ -25,16 +25,16 @@ class FoodDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(12),
+        margin: EdgeInsets.all(18),
         child: ListView(
           children: [
             Align(
               alignment: Alignment.centerLeft,
               child: Text.rich(TextSpan(children: <TextSpan>[
                 TextSpan(
-                    text: food.description,
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
+                  text: food.description,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+                ),
                 TextSpan(text: '  '),
                 TextSpan(
                     text: food.scientificName ?? '',

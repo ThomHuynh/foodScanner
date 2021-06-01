@@ -27,8 +27,13 @@ class FoodList extends StatelessWidget {
         InkWell(
           child: Card(
             child: ListTile(
-              title: Text(food.description),
-              subtitle: Text('ID:${food.id}     ${food.category ?? ''}'),
+              title: Text(food.description,
+                  style: TextStyle(color: Palette.onSurface)),
+              subtitle: Text(
+                'ID:${food.id}     ${food.category ?? ''}',
+                style: TextStyle(color: Palette.onSurfaceMedium),
+              ),
+              tileColor: Palette.bars,
             ),
           ),
           onTap: () {
@@ -51,7 +56,12 @@ class FoodList extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<SearchResult> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-                child: CircularProgressIndicator(color: Palette.primary));
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(color: Palette.primary),
+              ],
+            ));
           } else if (snapshot.hasData) {
             return Column(
               children: mapFoods(context, snapshot.data.foods),

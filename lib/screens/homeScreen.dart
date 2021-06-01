@@ -25,67 +25,59 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: ListView(children: [
-            Container(
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      child: Text(
-                        'Scan Food',
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                        ),
+      body: Container(
+        margin: EdgeInsets.all(18),
+        child: ListView(children: [
+          // Align(
+          //   alignment: Alignment.centerLeft,
+          //   child: Container(
+          //     child: Text(
+          //       'Food Scanner',
+          //       style: TextStyle(
+          //         fontSize: 26,
+          //         fontWeight: FontWeight.bold,
+          //       ),
+          //     ),
+          //     margin: EdgeInsets.only(top: 26),
+          //   ),
+          // ),
+          Container(
+            child: ListView(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              children: [
+                TextField(
+                    cursorColor: Palette.primary,
+                    controller: foodSearchController,
+                    decoration: InputDecoration(
+                      fillColor: Palette.bars,
+                      filled: true,
+                      contentPadding: EdgeInsets.all(0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide.none,
                       ),
-                      margin: EdgeInsets.only(top: 26),
+                      hintText: 'Enter food name...',
+                      isDense: true,
+                      prefixIcon: Icon(
+                        CupertinoIcons.search,
+                        color: Palette.onSurfaceMedium,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                    onSubmitted: (String value) async {
+                      setState(() {
+                        _futureSearchResult = getSearchResults(value);
+                      });
+                    }),
+                Container(
+                  child: FoodList(_futureSearchResult),
+                  padding: EdgeInsets.only(top: 18),
+                )
+              ],
             ),
-            Container(
-              child: ListView(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                children: [
-                  TextField(
-                      cursorColor: Palette.primary,
-                      controller: foodSearchController,
-                      decoration: InputDecoration(
-                        fillColor: Palette.surface,
-                        filled: true,
-                        contentPadding: EdgeInsets.all(0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide.none,
-                        ),
-                        hintText: 'Enter food name...',
-                        isDense: true,
-                        prefixIcon: Icon(
-                          CupertinoIcons.search,
-                          color: Palette.onSurface,
-                        ),
-                      ),
-                      onSubmitted: (String value) async {
-                        setState(() {
-                          _futureSearchResult = getSearchResults(value);
-                        });
-                      }),
-                  Container(
-                    child: FoodList(_futureSearchResult),
-                    padding: EdgeInsets.only(top: 18),
-                  )
-                ],
-              ),
-              margin: EdgeInsets.only(top: 18),
-            ),
-          ]),
-          margin: EdgeInsets.all(18),
-        ),
+            margin: EdgeInsets.only(top: 18),
+          ),
+        ]),
       ),
     );
   }

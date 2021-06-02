@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_scanner/config/config.dart';
 import 'package:food_scanner/model/food.dart';
+import 'package:food_scanner/widgets/nutritionGrid.dart';
 
 class FoodDetailScreen extends StatelessWidget {
   final Food food;
@@ -24,6 +26,18 @@ class FoodDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Palette.bars,
+        title: Text(
+          food.description,
+          style: TextStyle(
+            color: Palette.onSurface,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
+        iconTheme: IconThemeData(color: Palette.onSurfaceMedium),
+      ),
       body: Container(
         margin: EdgeInsets.all(18),
         child: ListView(
@@ -32,22 +46,17 @@ class FoodDetailScreen extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text.rich(TextSpan(children: <TextSpan>[
                 TextSpan(
-                  text: food.description,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
-                ),
-                TextSpan(text: '  '),
-                TextSpan(
                     text: food.scientificName ?? '',
-                    // style: TextStyle(fontStyle: FontStyle.italic))
-                    style: TextStyle(fontWeight: FontWeight.w300))
-              ])
-                  // child: Text(
-                  //   food.description,
-                  //   style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                    style: TextStyle(
+                      color: Palette.onSurface,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      fontStyle: FontStyle.italic,
+                    ))
+              ])),
             ),
             Text('Nutrition Facts - Amount Per 100 grams'),
-            // TODO show
+            NutritionGrid(food.foodNutrients),
             // TODO energy
             // fat, x-saturated fats
             // carbohydrates, Zusammensetzung

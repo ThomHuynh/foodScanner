@@ -30,7 +30,7 @@ class FoodList extends StatelessWidget {
               title: Text(food.description,
                   style: TextStyle(color: Palette.onSurface)),
               subtitle: Text(
-                'ID:${food.id}     ${food.category ?? ''}',
+                '${food.category ?? ''}',
                 style: TextStyle(color: Palette.onSurfaceMedium),
               ),
               tileColor: Palette.bars,

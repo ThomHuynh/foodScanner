@@ -12,6 +12,19 @@ class BottomNavScreen extends StatefulWidget {
 class _BottomNavScreenState extends State<BottomNavScreen> {
   final List _screens = [
     HomeScreen(),
+    Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlutterLogo(
+              size: 100,
+            ),
+            Text('Under Construction'),
+          ],
+        ),
+      ),
+    )
   ];
   int _currentIndex = 0;
 

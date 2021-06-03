@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 import 'package:food_scanner/config/config.dart';
 import 'package:food_scanner/model/food.dart';
 import 'package:food_scanner/widgets/nutritionGrid.dart';
@@ -23,8 +24,69 @@ class FoodDetailScreen extends StatelessWidget {
     return list;
   }
 
+  FoodNutrient findNutrient(String name) {
+    if (name == 'Energy') {
+      return food.foodNutrients
+          .firstWhereOrNull((nutrient) => nutrient.unitName == 'KCAL');
+    }
+    if (name == 'Fat') {
+      FoodNutrient fat = food.foodNutrients.firstWhereOrNull(
+          (FoodNutrient nutrient) =>
+              nutrient.name.contains(RegExp('\\bfat\\b')));
+      return fat;
+    } else {
+      return food.foodNutrients.firstWhereOrNull((FoodNutrient nutrient) =>
+          nutrient.name.contains(RegExp('\\b$name\\b')));
+    }
+  }
+
+  List<FoodNutrient> findAllNutrients(String name) {
+    List<FoodNutrient> list = [];
+    list = food.foodNutrients
+        .where((FoodNutrient nutrient) =>
+            nutrient.name.contains(RegExp('\\b$name\\b')))
+        .toList();
+    return list;
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<FoodNutrient> firstRow = [];
+    List<FoodNutrient> secondRow = [];
+    List<FoodNutrient> vitamins = [];
+
+    FoodNutrient energy = findNutrient('Energy');
+    if (energy != null) {
+      firstRow.add(energy);
+    }
+    FoodNutrient carbohydrate = findNutrient('Carbohydrate');
+    if (carbohydrate != null) {
+      firstRow.add(carbohydrate);
+    }
+    FoodNutrient sugars = findNutrient('Sugars');
+    if (sugars != null) {
+      firstRow.add(sugars);
+    }
+
+    FoodNutrient fat = findNutrient('Fat');
+    if (fat != null) {
+      secondRow.add(fat);
+    }
+    FoodNutrient protein = findNutrient('Protein');
+    if (protein != null) {
+      secondRow.add(protein);
+    }
+    FoodNutrient sodium = findNutrient('Sodium');
+    if (sodium != null) {
+      secondRow.add(sodium);
+    }
+    FoodNutrient cholesterol = findNutrient('Cholesterol');
+    if (cholesterol != null) {
+      secondRow.add(cholesterol);
+    }
+
+    vitamins = findAllNutrients('Vitamin');
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Palette.bars,
@@ -56,13 +118,9 @@ class FoodDetailScreen extends StatelessWidget {
               ])),
             ),
             Text('Nutrition Facts - Amount Per 100 grams'),
-            NutritionGrid(food.foodNutrients),
-            // TODO energy
-            // fat, x-saturated fats
-            // carbohydrates, Zusammensetzung
-            // sugar
-            // protein
-            // sodium
+            NutritionHorizontalList(firstRow),
+            NutritionHorizontalList(secondRow),
+            NutritionHorizontalList(vitamins),
             DataTable(
               columnSpacing: 25,
               dataRowHeight: 25,

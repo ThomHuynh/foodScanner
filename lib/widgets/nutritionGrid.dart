@@ -1,120 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:food_scanner/config/config.dart';
 import 'package:food_scanner/model/food.dart';
-import 'package:collection/collection.dart';
 
-class NutritionGrid extends StatelessWidget {
+class NutritionHorizontalList extends StatelessWidget {
   final List<FoodNutrient> nutrients;
 
-  Map getFats() {
-    Map fats = new Map();
-
-    if (nutrients.firstWhereOrNull(
-            (nutrient) => nutrient.name == 'Total lipid (fat)') !=
-        null) {
-      fats['total'] = nutrients
-          .firstWhereOrNull((nutrient) => nutrient.name == 'Total lipid (fat)');
-    }
-    if (nutrients.firstWhereOrNull(
-            (nutrient) => nutrient.name == 'Fatty acids, total saturated') !=
-        null) {
-      fats['saturated'] = nutrients.firstWhereOrNull(
-          (nutrient) => nutrient.name == 'Fatty acids, total saturated');
-    }
-    if (nutrients.firstWhereOrNull((nutrient) =>
-            nutrient.name == 'Fatty acids, total monosaturated') !=
-        null) {
-      fats['monosaturated'] = nutrients.firstWhereOrNull(
-          (nutrient) => nutrient.name == 'Fatty acids, total monosaturated');
-    }
-    if (nutrients.firstWhereOrNull((nutrient) =>
-            nutrient.name == 'Fatty acids, total polyunsaturated') !=
-        null) {
-      fats['polyunsaturated'] = nutrients.firstWhereOrNull(
-          (nutrient) => nutrient.name == 'Fatty acids, total polyunsaturated');
-    }
-
-    return fats;
-  }
-
-  FoodNutrient findNutrient(String name) {
-    if (name == 'Energy') {
-      return nutrients
-          .firstWhereOrNull((nutrient) => nutrient.unitName == 'KCAL');
-    } else {
-      return nutrients.firstWhereOrNull(
-          (nutrient) => nutrient.name.contains(RegExp('\\b$name\\b')));
-    }
-  }
-
-  NutritionGrid(this.nutrients);
+  NutritionHorizontalList(this.nutrients);
 
   @override
   Widget build(BuildContext context) {
-    FoodNutrient energy = findNutrient('Energy');
-    FoodNutrient carbohydrate = findNutrient('Carbohydrate');
-    FoodNutrient sugars = findNutrient('Sugars');
-    FoodNutrient protein = findNutrient('Protein');
-    FoodNutrient sodium = findNutrient('Sodium');
-
-    if (energy != null) {
-      print('Energy: ${energy.value}');
-    } else {
-      print('Energy: null');
-    }
-    if (carbohydrate != null) {
-      print('Carbohydrate: ${carbohydrate.value}');
-    } else {
-      print('Carbohydrate: null');
-    }
-    if (sugars != null) {
-      print('Sugars: ${sugars.value}');
-    } else {
-      print('Sugars: null');
-    }
-    if (protein != null) {
-      print('Protein" ${protein.value}');
-    } else {
-      print('Protein: null');
-    }
-    if (sodium != null) {
-      print('Sodium ${sodium.value}');
-    } else {
-      print('Sodium: null');
-    }
-
-    // Map fats = getFats();
-    // fats.forEach((key, value) {
-    //   print('$key:${value.value}');
-    // });
-
     return Container(
-        height: MediaQuery.of(context).size.height * 0.25,
-        // color: Palette.bars,
-        child: Column(
-          children: <Widget>[
-            Flexible(
-                child: Row(children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(8),
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: Palette.surface,
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: Column(
-                  children: [Text('Energy'), Text('Energy')],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text('Energy'),
-                    Text('Fats'),
-                  ],
-                ),
-              ),
-            ]))
-          ],
+        margin: EdgeInsets.only(top: 18),
+        height: MediaQuery.of(context).size.height * 0.2,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: nutrients.map((FoodNutrient nutrient) {
+            return buildFoodNutrientCard(nutrient.name, nutrient.value,
+                nutrient.unitName, Palette.surface);
+          }).toList(),
         ));
+  }
+
+  Container buildFoodNutrientCard(
+      String title, num value, String unitName, Color color) {
+    return Container(
+      margin: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: color, borderRadius: BorderRadius.circular(10.0)),
+      child: Container(
+        width: 150,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title),
+            Text(
+              '$value $unitName',
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

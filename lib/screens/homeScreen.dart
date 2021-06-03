@@ -28,19 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         margin: EdgeInsets.all(18),
         child: ListView(children: [
-          // Align(
-          //   alignment: Alignment.centerLeft,
-          //   child: Container(
-          //     child: Text(
-          //       'Food Scanner',
-          //       style: TextStyle(
-          //         fontSize: 26,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     ),
-          //     margin: EdgeInsets.only(top: 26),
-          //   ),
-          // ),
           Container(
             child: ListView(
               physics: NeverScrollableScrollPhysics(),

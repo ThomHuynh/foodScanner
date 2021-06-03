@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:food_scanner/config/config.dart';
 import 'package:food_scanner/model/food.dart';
-import 'package:food_scanner/widgets/nutritionGrid.dart';
+import 'package:food_scanner/widgets/nutritionBar.dart';
 
 class FoodDetailScreen extends StatelessWidget {
   final Food food;
@@ -51,41 +51,49 @@ class FoodDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> mainNutrients_1 = [
+      'Energy',
+      'Carbohydrate',
+      'Sugars',
+      'Fiber'
+    ];
+    List<String> mainNutrients_2 = ['Fat', 'Protein', 'Sodium', 'Cholesterol'];
+    List<String> sideNutrients_1 = [
+      'Zinc, Zn',
+      'Calcium, Ca',
+      'Iron, Fe',
+      'Selenium,Se',
+      'Magnesium, Mg',
+      'Potassium, K',
+      'Copper, Cu'
+          'Phosphorus, P',
+      'Manganese, Mn',
+      'Fluoride, F'
+    ];
+
+    List<FoodNutrient> vitamins = findAllNutrients('Vitamin');
+
     List<FoodNutrient> firstRow = [];
+    for (String item in mainNutrients_1) {
+      FoodNutrient nutrient = findNutrient(item);
+      if (nutrient != null) {
+        firstRow.add(nutrient);
+      }
+    }
     List<FoodNutrient> secondRow = [];
-    List<FoodNutrient> vitamins = [];
-
-    FoodNutrient energy = findNutrient('Energy');
-    if (energy != null) {
-      firstRow.add(energy);
+    for (String item in mainNutrients_2) {
+      FoodNutrient nutrient = findNutrient(item);
+      if (nutrient != null) {
+        secondRow.add(nutrient);
+      }
     }
-    FoodNutrient carbohydrate = findNutrient('Carbohydrate');
-    if (carbohydrate != null) {
-      firstRow.add(carbohydrate);
+    List<FoodNutrient> thirdRow = [];
+    for (String item in sideNutrients_1) {
+      FoodNutrient nutrient = findNutrient(item);
+      if (nutrient != null) {
+        thirdRow.add(nutrient);
+      }
     }
-    FoodNutrient sugars = findNutrient('Sugars');
-    if (sugars != null) {
-      firstRow.add(sugars);
-    }
-
-    FoodNutrient fat = findNutrient('Fat');
-    if (fat != null) {
-      secondRow.add(fat);
-    }
-    FoodNutrient protein = findNutrient('Protein');
-    if (protein != null) {
-      secondRow.add(protein);
-    }
-    FoodNutrient sodium = findNutrient('Sodium');
-    if (sodium != null) {
-      secondRow.add(sodium);
-    }
-    FoodNutrient cholesterol = findNutrient('Cholesterol');
-    if (cholesterol != null) {
-      secondRow.add(cholesterol);
-    }
-
-    vitamins = findAllNutrients('Vitamin');
 
     return Scaffold(
       appBar: AppBar(
@@ -95,47 +103,69 @@ class FoodDetailScreen extends StatelessWidget {
           style: TextStyle(
             color: Palette.onSurface,
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 14,
           ),
         ),
         iconTheme: IconThemeData(color: Palette.onSurfaceMedium),
       ),
-      body: Container(
-        margin: EdgeInsets.all(18),
-        child: ListView(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text.rich(TextSpan(children: <TextSpan>[
-                TextSpan(
-                    text: food.scientificName ?? '',
-                    style: TextStyle(
-                      color: Palette.onSurface,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      fontStyle: FontStyle.italic,
-                    ))
-              ])),
+      body: ListView(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 18, top: 18),
+            child: Text(
+              food.scientificName ?? '',
+              style: TextStyle(
+                color: Palette.onSurface,
+                fontWeight: FontWeight.bold,
+                fontSize: 28,
+                fontStyle: FontStyle.italic,
+              ),
             ),
-            Text('Nutrition Facts - Amount Per 100 grams'),
-            NutritionHorizontalList(firstRow),
-            NutritionHorizontalList(secondRow),
-            NutritionHorizontalList(vitamins),
-            DataTable(
-              columnSpacing: 25,
-              dataRowHeight: 25,
-              headingRowHeight: 35,
-              horizontalMargin: 0,
-              columns: const <DataColumn>[
-                DataColumn(label: Text('Name')),
-                DataColumn(label: Text('Amount')),
-              ],
-              rows: mapToDataRow(food.foodNutrients),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 18, top: 24),
+            child: Text(
+              'Dashboard',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Palette.onSurface,
+                  fontSize: 22),
             ),
-            Text(
-                '*Per cent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.')
-          ],
-        ),
+          ),
+          if (firstRow.isNotEmpty) MainNutritionHorizontalList(firstRow, true),
+          if (secondRow.isNotEmpty)
+            MainNutritionHorizontalList(secondRow, true),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 18),
+            child: Text(
+              '*Per cent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.',
+              style: TextStyle(color: Palette.onSurfaceMedium, fontSize: 10),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 18, top: 24),
+            child: Text(
+              'More Details',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Palette.onSurface,
+                  fontSize: 22),
+            ),
+          ),
+          if (vitamins.isNotEmpty) MainNutritionHorizontalList(vitamins, false),
+          if (thirdRow.isNotEmpty) MainNutritionHorizontalList(thirdRow, false),
+          // DataTable(
+          //   columnSpacing: 25,
+          //   dataRowHeight: 25,
+          //   headingRowHeight: 35,
+          //   horizontalMargin: 0,
+          //   columns: const <DataColumn>[
+          //     DataColumn(label: Text('Name')),
+          //     DataColumn(label: Text('Amount')),
+          //   ],
+          //   rows: mapToDataRow(food.foodNutrients),
+          // ),
+        ],
       ),
     );
   }

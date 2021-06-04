@@ -65,8 +65,8 @@ class FoodDetailScreen extends StatelessWidget {
       'Selenium,Se',
       'Magnesium, Mg',
       'Potassium, K',
-      'Copper, Cu'
-          'Phosphorus, P',
+      'Copper, Cu',
+      'Phosphorus, P',
       'Manganese, Mn',
       'Fluoride, F'
     ];
@@ -97,7 +97,7 @@ class FoodDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Palette.bars,
+        backgroundColor: Palette.background,
         title: Text(
           food.description,
           style: TextStyle(
@@ -138,7 +138,7 @@ class FoodDetailScreen extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 18),
             child: Text(
-              '*Per cent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.',
+              '*Per cent Daily Values are based on a 2,000 kcal diet. Your daily values may be higher or lower depending on your calorie needs.',
               style: TextStyle(color: Palette.onSurfaceMedium, fontSize: 10),
             ),
           ),

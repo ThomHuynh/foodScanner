@@ -35,7 +35,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         backgroundColor: Palette.background,
         title: Text(
           'Food Scanner',
-          style: TextStyle(color: Palette.onSurface, fontSize: 24),
+          style: TextStyle(color: Palette.onSurface, fontSize: 16),
         ),
       ),
       body: _screens[_currentIndex],

@@ -32,6 +32,16 @@ class _HomeScreenState extends State<HomeScreen> {
             shrinkWrap: true,
             children: [
               Container(
+                margin: EdgeInsets.only(left: 18, bottom: 18),
+                child: Text(
+                  'Search',
+                  style: TextStyle(
+                      color: Palette.onSurface,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28),
+                ),
+              ),
+              Container(
                 margin: EdgeInsets.symmetric(horizontal: 18),
                 child: TextField(
                     cursorColor: Palette.primary,

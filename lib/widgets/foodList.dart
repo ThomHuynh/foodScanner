@@ -26,7 +26,7 @@ class FoodList extends StatelessWidget {
       list.add(
         Container(
           margin: EdgeInsets.symmetric(vertical: 2),
-          height: MediaQuery.of(context).size.height * 0.09,
+          height: 75,
           child: InkWell(
             borderRadius: BorderRadius.circular(12.0),
             child: Container(

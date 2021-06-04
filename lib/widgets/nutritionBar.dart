@@ -16,7 +16,8 @@ class MainNutritionHorizontalList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.symmetric(vertical: 8),
-        height: MediaQuery.of(context).size.height * (0.1 + (large ? 0.07 : 0)),
+        height: 100.0 + (large ? 50.0 : 0.0),
+        // MediaQuery.of(context).size.height * (0.125 + (large ? 0.07 : 0)),
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: nutrients.map((FoodNutrient nutrient) {
@@ -58,7 +59,7 @@ class MainNutritionHorizontalList extends StatelessWidget {
       decoration: BoxDecoration(
           color: color, borderRadius: BorderRadius.circular(12.0)),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.34,
+        width: 140,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +80,8 @@ class MainNutritionHorizontalList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.15,
+                    width: 45,
+                    // width: MediaQuery.of(context).size.width * 0.15,
                     child: Text(
                       '$value $unitName',
                       style: TextStyle(
@@ -88,8 +90,8 @@ class MainNutritionHorizontalList extends StatelessWidget {
                   ),
                   CircularPercentIndicator(
                     backgroundColor: Palette.surface,
-                    radius: 70.0,
-                    lineWidth: 6.0,
+                    radius: 80.0,
+                    lineWidth: 8.0,
                     percent: (percentage > 1) ? 1 : percentage,
                     center:
                         new Text("${(percentage * 100).toStringAsFixed(2)}%"),
@@ -99,7 +101,7 @@ class MainNutritionHorizontalList extends StatelessWidget {
               ),
             if (!large)
               Container(
-                width: MediaQuery.of(context).size.width * 0.3,
+                width: 100,
                 child: Text(
                   '$value $unitName',
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),

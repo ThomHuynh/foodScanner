@@ -47,6 +47,8 @@ class MainNutritionHorizontalList extends StatelessWidget {
       percentage = num.parse((value / 28).toStringAsFixed(4));
     else if (title.contains(RegExp('\\bProtein\\b')))
       percentage = num.parse((value / 50).toStringAsFixed(4));
+    else if (title.contains(RegExp('\\bCholesterol\\b')))
+      percentage = num.parse((value / 50).toStringAsFixed(4));
     else if (title.contains(RegExp('\\bSodium\\b')))
       percentage = num.parse((value / 2300).toStringAsFixed(4));
 
@@ -61,10 +63,16 @@ class MainNutritionHorizontalList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
-              textAlign: TextAlign.start,
-              style: TextStyle(color: Palette.onSurface),
+            Flexible(
+              child: RichText(
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                text: TextSpan(
+                  text: title,
+                  style: TextStyle(color: Palette.onSurface),
+                ),
+                textAlign: TextAlign.start,
+              ),
             ),
             if (large)
               Row(

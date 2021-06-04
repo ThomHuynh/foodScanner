@@ -40,9 +40,15 @@ class FoodList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    food.description,
-                    style: TextStyle(color: Palette.onSurface),
+                  Flexible(
+                    child: RichText(
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                        text: food.description,
+                        style: TextStyle(color: Palette.onSurface),
+                      ),
+                    ),
                   ),
                   Text(
                     '${food.category ?? ''}',

@@ -10,7 +10,7 @@ Future<SearchResult> getSearchResults(String value) async {
     'limit': '2',
     'dataType': ['Foundation', 'SR Legacy'],
     'query': '$value',
-    'pageSize': '20'
+    'pageSize': '25'
   });
 
   final http.Response response = await http.get(url);
@@ -20,21 +20,5 @@ Future<SearchResult> getSearchResults(String value) async {
     return result;
   } else {
     throw Exception('Failed to load search results');
-  }
-}
-
-// TODO write api request for food detail
-getFoodDetails(int id) async {
-  Uri url = Uri.https('api.nal.usda.gov', '/fdc/v1/food/$id', {
-    'api_key': 'xdB5Kz8rvwFnQz6U6TWo1abZbnds3cZA8VIlHpOs',
-  });
-
-  final http.Response response = await http.get(url);
-
-  if (response.statusCode == 200) {
-    Food result = Food.fromJson(jsonDecode(response.body));
-    return result;
-  } else {
-    throw Exception('Failed to load food details for fdcId $id');
   }
 }

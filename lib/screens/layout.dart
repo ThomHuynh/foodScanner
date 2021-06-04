@@ -31,12 +31,20 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Palette.background,
+        title: Text(
+          'Food Scanner',
+          style: TextStyle(color: Palette.onSurface, fontSize: 16),
+        ),
+      ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Palette.bars,
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
         selectedItemColor: Palette.primary,
-        unselectedItemColor: Palette.onSurface,
+        unselectedItemColor: Palette.onSurfaceMedium,
         items: [
           [CupertinoIcons.home, 'Home'],
           [CupertinoIcons.bookmark, 'Bookmarks']

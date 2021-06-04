@@ -24,19 +24,40 @@ class FoodList extends StatelessWidget {
 
     foods.forEach((Food food) {
       list.add(
-        InkWell(
-          child: Card(
-            child: ListTile(
-              title: Text(food.description),
-              subtitle: Text('ID:${food.id}     ${food.category ?? ''}'),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 2),
+          height: MediaQuery.of(context).size.height * 0.09,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Palette.bars,
+              ),
+              margin: EdgeInsets.all(3),
+              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    food.description,
+                    style: TextStyle(color: Palette.onSurface),
+                  ),
+                  Text(
+                    '${food.category ?? ''}',
+                    style: TextStyle(color: Palette.onSurfaceMedium),
+                  ),
+                ],
+              ),
             ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => FoodDetailScreen(food)));
+            },
           ),
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => FoodDetailScreen(food)));
-          },
         ),
       );
     });
@@ -51,7 +72,12 @@ class FoodList extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<SearchResult> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-                child: CircularProgressIndicator(color: Palette.primary));
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(color: Palette.primary),
+              ],
+            ));
           } else if (snapshot.hasData) {
             return Column(
               children: mapFoods(context, snapshot.data.foods),

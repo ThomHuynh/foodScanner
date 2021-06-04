@@ -12,13 +12,14 @@ class MyApp extends StatelessWidget {
       title: 'Food Scanner',
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(
-        cupertinoOverrideTheme:
-            CupertinoThemeData(primaryColor: Palette.primary),
+        scaffoldBackgroundColor: Palette.background,
+        cupertinoOverrideTheme: CupertinoThemeData(
+          primaryColor: Palette.primary,
+        ),
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Palette.primary,
           selectionColor: Palette.primary.withOpacity(0.5),
           selectionHandleColor: Palette.primary,
-          // selectionHandleColor: Palette.primary,
         ),
         brightness: Brightness.dark,
         primaryColor: Palette.primary,

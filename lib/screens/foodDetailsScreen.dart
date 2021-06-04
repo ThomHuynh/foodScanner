@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:food_scanner/config/config.dart';
@@ -97,6 +98,22 @@ class FoodDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: null,
+            icon: Icon(
+              CupertinoIcons.info,
+              color: Palette.onSurfaceMedium,
+            ),
+          ),
+          IconButton(
+            onPressed: null,
+            icon: Icon(
+              CupertinoIcons.bookmark,
+              color: Palette.onSurfaceMedium,
+            ),
+          ),
+        ],
         backgroundColor: Palette.background,
         title: Text(
           food.description,
@@ -110,18 +127,19 @@ class FoodDetailScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Container(
-            margin: EdgeInsets.only(left: 18, top: 18),
-            child: Text(
-              food.scientificName ?? '',
-              style: TextStyle(
-                color: Palette.onSurface,
-                fontWeight: FontWeight.bold,
-                fontSize: 28,
-                fontStyle: FontStyle.italic,
+          if (food.scientificName != null)
+            Container(
+              margin: EdgeInsets.only(left: 18, top: 18),
+              child: Text(
+                food.scientificName,
+                style: TextStyle(
+                  color: Palette.onSurface,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
-          ),
           Container(
             margin: EdgeInsets.only(left: 18, top: 24),
             child: Text(

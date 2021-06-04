@@ -79,6 +79,7 @@ class MainNutritionHorizontalList extends StatelessWidget {
                     ),
                   ),
                   CircularPercentIndicator(
+                    backgroundColor: Palette.surface,
                     radius: 70.0,
                     lineWidth: 6.0,
                     percent: (percentage > 1) ? 1 : percentage,

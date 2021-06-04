@@ -33,6 +33,15 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Palette.background,
+        actions: <Widget>[
+          IconButton(
+            onPressed: null,
+            icon: Icon(
+              CupertinoIcons.info,
+              color: Palette.onSurfaceMedium,
+            ),
+          ),
+        ],
         title: Text(
           'Food Scanner',
           style: TextStyle(color: Palette.onSurface, fontSize: 16),

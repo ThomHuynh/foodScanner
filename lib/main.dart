@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: Palette.primary,
         primaryColorDark: Palette.primary,
+        primaryColorBrightness: Brightness.dark,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       themeMode: ThemeMode.dark,
